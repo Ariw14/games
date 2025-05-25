@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="welcome-screen">
+            <img src="assets/background.jpg" alt="" width="220px" height="100px">
+            <input type="text" id="username" class="username" placeholder="Input username">
+            <select name="level" id="level" required>
+                <option value="" disabled selected>select level</option>
+                <option value="easy">Easy</option>
+                <option value="medium">medium</option>
+                <option value="hard">hard</option>
+            </select>
+            <div class="weapon-selection">
+                <label for="weapon1">
+                    <img src="assets/Element_Game_58.jpg" alt="" width="75px" height="75px">
+                    <input type="radio" name="weapon" value="weapon1">
+                </label>
+                <label for="weapon2">
+                    <img src="assets/Element_Game_58.jpg" alt="" width="75px" height="75px">
+                    <input type="radio" name="weapon" value="weapon2">
+                </label>
+            </div>
+            <div class="dart-selection">
+                <label for="dart1">
+                    <img src="assets/Element_Game_58.jpg" alt="" width="75px" height="75px">
+                    <input type="radio" name="dart" value="dart1">
+                </label>
+                <label for="dart2">
+                    <img src="assets/Element_Game_58.jpg" alt="" width="75px" height="75px">
+                    <input type="radio" name="dart" value="dart2">
+                </label>
+                <label for="dart3">
+                    <img src="assets/Element_Game_58.jpg" alt="" width="75px" height="75px">
+                    <input type="radio" name="dart" value="dart3">
+                </label>
+            </div>
+            <div class="button-group">
+                <button class="start-btn" id="startBtn" aria-label="Start Game">Start Game</button>
+                <button class="instruction" id="instruction" aria-label="Instruction">Instruction</button>
+            </div>
+        </div>
+    </div>
+    <div id="instructionBox" class="hidden">
+        <div class="instruction-content">
+            <button id="closeBtn" aria-label="Close instruction">×</button>
+            <h3>how to play a game</h3>
+            <ul>
+                <li>1. Input username</li>
+                <li>2. Point the pointer at the target</li>
+                <li>3. Click to shoot</li>
+                <li>4. Get as many points as possible</li>
+                <li>5. Enjoy!</li>
+            </ul>
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
