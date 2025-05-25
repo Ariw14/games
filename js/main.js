@@ -12,43 +12,68 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const startbtn = document.getElementById('startBtn');
+// main.js
 
-    startbtn.addEventListener('click', () => {
-        const username = document.getElementById('username').value.trim();
-        const level = document.getElementById('level').value;
+document.addEventListener('DOMContentLoaded', function () {
+    const startBtn = document.getElementById('startBtn');
+    const usernameInput = document.getElementById('username');
+    const levelSelect = document.getElementById('level');
+    const weaponRadios = document.querySelectorAll('input[name="weapon"]');
+    const dartRadios = document.querySelectorAll('input[name="dart"]');
+    const countdownDiv = document.getElementById('countdown');
+
+    function validateForm() {
+        const username = usernameInput.value.trim();
+        const level = levelSelect.value;
         const weapon = document.querySelector('input[name="weapon"]:checked');
         const dart = document.querySelector('input[name="dart"]:checked');
 
-        if (!username) {
-            alert('please fill your username');
-            return;
-        }
+        const isValid = username && level && weapon && dart;
+        startBtn.disabled = !isValid;
+    }
 
-        if (!level) {
-            alert('please select your level');
-            return;
-        }
+    // Cek setiap kali ada perubahan input
+    usernameInput.addEventListener('input', validateForm);
+    levelSelect.addEventListener('change', validateForm);
+    weaponRadios.forEach(radio => radio.addEventListener('change', validateForm));
+    dartRadios.forEach(radio => radio.addEventListener('change', validateForm));
 
-        if (!weapon) {
-            alert('please select your weapon');
-            return;
-        }
+    // Klik tombol start
+    startBtn.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        const level = levelSelect.value;
+        const weapon = document.querySelector('input[name="weapon"]:checked');
+        const dart = document.querySelector('input[name="dart"]:checked');
 
-        if (!dart) {
-            alert('please select your dart')
-        }
+        // Sembunyikan form jika perlu (opsional)
+        // document.querySelector('.welcome-screen').style.display = 'none';
 
-        alert(`Starting game for ${username} at ${level} level with ${weapon.value} and ${dart.value}.`);
+        // Tampilkan countdown
+        let counter = 3;
+        countdownDiv.style.display = 'block';
+        countdownDiv.textContent = counter;
 
-        
-        window.location.href = 'game.html'; 
+        const countdownInterval = setInterval(() => {
+            counter--;
+            if (counter === 0) {
+                clearInterval(countdownInterval);
+                countdownDiv.textContent = 'Go!';
+                setTimeout(() => {
+                    window.location.href = 'game.html';
+                }, 800);
+            } else {
+                countdownDiv.textContent = counter;
+            }
+        }, 1000);
+    });
 
-    })
-})
+    // Inisialisasi tombol start dalam keadaan disable
+    validateForm();
+});
 
-document.addEventListener('DOMContentLoaded', ()=> {
+
+
+document.addEventListener('DOMContentLoaded', () => {
     const exitbtn = document.getElementById('exitbtn');
 
     exitbtn.addEventListener('click', () => {
